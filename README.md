@@ -1,11 +1,11 @@
 # chess-app
 
 ## Tasks 
-( <span style="color:green">Green</span> : Done)  
+( ![#c5f015](Green)`#c5f015` : Done)  
 
 ### Frontend   
-<span style="color:green">1. Create a chess board and add pieces on html canvas</span>    
-<span style="color:green">2. Move the pieces using mouse</span>     
+![#c5f015](1. Create a chess board and add pieces on html canvas)`#c5f015`   
+![#c5f015](2. Move the pieces using mouse)`#c5f015`     
 3. Restrict the movements of the pieces  
 4. Give alternate moves to black and white  
 5. Pieces should capture   
