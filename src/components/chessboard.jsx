@@ -82,7 +82,7 @@ const Chessboard = () => {
     const [FinalPosition,setFinalPosition] = useState([]) ;
    
     const [ImagePositions,setImagePositions] = useState([]) ; 
-
+    const [whitemove,setwhitemove]=useState(true);
   useEffect(() => {
     const whitePawn_1Image = new Image();
     whitePawn_1Image.src = WhitePawn_1;
@@ -325,54 +325,124 @@ const Chessboard = () => {
   function checklegallity()
   {
 
-    if(selectedPiece===whitePawn_1Ref.current||selectedPiece===whitePawn_2Ref.current||selectedPiece===whitePawn_3Ref.current||selectedPiece===whitePawn_4Ref.current||selectedPiece===whitePawn_5Ref.current||selectedPiece===whitePawn_5Ref.current||selectedPiece===whitePawn_6Ref.current||selectedPiece===whitePawn_7Ref.current||selectedPiece===whitePawn_8Ref.current)
+
+    if(whitemove&& (selectedPiece===whitePawn_1Ref.current||selectedPiece===whitePawn_2Ref.current||selectedPiece===whitePawn_3Ref.current||selectedPiece===whitePawn_4Ref.current||selectedPiece===whitePawn_5Ref.current||selectedPiece===whitePawn_5Ref.current||selectedPiece===whitePawn_6Ref.current||selectedPiece===whitePawn_7Ref.current||selectedPiece===whitePawn_8Ref.current))
     {
-      if(FinalPosition.y===InitialPosition.y-80)return true ;
+      if(FinalPosition.y===InitialPosition.y-80)
+      {
+        setwhitemove(!whitemove );
+        return true ;
+      }
         if(InitialPosition.y===480)
         {
-          if(FinalPosition.y===InitialPosition.y-160)return true ;
+          if(FinalPosition.y===InitialPosition.y-160){
+            setwhitemove(!whitemove );
+            return true ;
+          }
         }
         return false ;
 
     }
-    if(selectedPiece===blackPawn_1Ref.current||selectedPiece===blackPawn_2Ref.current||selectedPiece===blackPawn_3Ref.current||selectedPiece===blackPawn_4Ref.current||selectedPiece===blackPawn_5Ref.current||selectedPiece===blackPawn_6Ref.current||selectedPiece===blackPawn_7Ref.current||selectedPiece===blackPawn_8Ref.current)
+    if(!whitemove &&(selectedPiece===blackPawn_1Ref.current||selectedPiece===blackPawn_2Ref.current||selectedPiece===blackPawn_3Ref.current||selectedPiece===blackPawn_4Ref.current||selectedPiece===blackPawn_5Ref.current||selectedPiece===blackPawn_6Ref.current||selectedPiece===blackPawn_7Ref.current||selectedPiece===blackPawn_8Ref.current))
     {
-      if(FinalPosition.y===InitialPosition.y+80)return true ;
+      if(FinalPosition.y===InitialPosition.y+80){
+        setwhitemove(!whitemove );
+        return true ;
+      }
         if(InitialPosition.y===80)
         {
-          if(FinalPosition.y===InitialPosition.y+160)return true ;
+          if(FinalPosition.y===InitialPosition.y+160){
+            setwhitemove(!whitemove );
+            return true ;
+          }
         }
         return false ;
 
     }
-    if(selectedPiece===whiteRook_1Ref.current||selectedPiece===whiteRook_2Ref.current||selectedPiece===blackRook_1Ref.current||selectedPiece===blackRook_2Ref.current)
+    if(whitemove && (selectedPiece===whiteRook_1Ref.current||selectedPiece===whiteRook_2Ref.current||selectedPiece===blackRook_1Ref.current||selectedPiece===blackRook_2Ref.current))
     {
-      if(FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x)return true ;
+      if(FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+        setwhitemove(!whitemove );
+        return true ;
+      }
       console.log("Rook");
       return false ;
     }
-    if(selectedPiece===whiteKnight_1Ref.current||selectedPiece===whiteKnight_2Ref.current||selectedPiece===blackKnight_1Ref.current||selectedPiece===blackKnight_2Ref.current)
+    if(!whitemove &&(selectedPiece===blackRook_1Ref.current||selectedPiece===blackRook_2Ref.current))
     {
-      if((FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x-80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x-80))return true ;
+      if(FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+        setwhitemove(!whitemove );
+        return true ;
+      }
+      console.log("Rook");
       return false ;
     }
-    if(selectedPiece===whiteBishop_1Ref.current||selectedPiece===whiteBishop_2Ref.current||selectedPiece===blackBishop_1Ref.current||selectedPiece===blackBishop_2Ref.current)
+    if(whitemove && (selectedPiece===whiteKnight_1Ref.current||selectedPiece===whiteKnight_2Ref.current))
     {
-      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x))return true ;
+      if((FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x-80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x-80)){
+        setwhitemove(!whitemove );
+        return true ;
+      }
       return false ;
     }
-    if(selectedPiece===whiteQueenRef.current||selectedPiece===blackQueenRef.current)
+    if(!whitemove && (selectedPiece===blackKnight_1Ref.current||selectedPiece===blackKnight_2Ref.current))
     {
-      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x)return true ;
+      if((FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x-80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x-80)){
+        setwhitemove(!whitemove );
+        return true ;
+      }
       return false ;
     }
-    if(selectedPiece===whiteKingRef.current||selectedPiece===blackKingRef.current)
+    if(whitemove && (selectedPiece===whiteBishop_1Ref.current||selectedPiece===whiteBishop_2Ref.current))
     {
-      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x)return true ;
+      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)){
+        setwhitemove(!whitemove );
+        return true ;
+      }
+      return false ;
+    }
+    if(!whitemove && (selectedPiece===blackBishop_1Ref.current||selectedPiece===blackBishop_2Ref.current))
+    {
+      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)){
+        setwhitemove(!whitemove );
+        return true ;
+      }
+      return false ;
+    }
+    if(whitemove && selectedPiece===whiteQueenRef.current)
+    {
+      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+        setwhitemove(!whitemove );
+        return true ;
+      }
+      return false ;
+    }
+    if(!whitemove && selectedPiece===blackQueenRef.current)
+    {
+      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+        setwhitemove(!whitemove );
+        return true ;
+      }
+      return false ;
+    }
+    if(whitemove && selectedPiece===whiteKingRef.current)
+    {
+      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+        setwhitemove(!whitemove );
+        return true ;
+      }
+      return false ;
+    } 
+    if(!whitemove && selectedPiece===blackKingRef.current)
+    {
+      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+        setwhitemove(!whitemove );
+        return true ;
+      }
       return false ;
     } 
 
-
+    return false ;
     
   }
 
