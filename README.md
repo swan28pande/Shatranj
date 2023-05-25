@@ -11,6 +11,9 @@
 5. Pieces should capture   
 6. Check, Stalemate and checkmate  
 7. Enpassant 
+8. Time 
+9. Past moves visible
+10.Captured pieces visible
 ```
 
 
