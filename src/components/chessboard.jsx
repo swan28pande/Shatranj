@@ -283,7 +283,7 @@ const Chessboard = () => {
 
   }, []);
 
-
+  
   const checkAllImagesLoaded = () => {
     if ( whiteBishop_1Ref.current && whiteBishop_2Ref.current && blackBishop_1Ref.current && blackBishop_2Ref.current && whiteKnight_1Ref.current && whiteKnight_2Ref.current && blackKnight_1Ref.current && blackKnight_2Ref.current && whiteRook_1Ref.current && whiteRook_2Ref.current && blackRook_1Ref.current && blackRook_2Ref.current && whiteQueenRef.current && blackQueenRef.current && whiteKingRef.current && blackKingRef.current && whitePawn_1Ref.current && whitePawn_2Ref.current && whitePawn_3Ref.current && whitePawn_4Ref.current && whitePawn_5Ref.current && whitePawn_6Ref.current && whitePawn_7Ref.current && whitePawn_8Ref.current && blackPawn_1Ref.current && blackPawn_2Ref.current && blackPawn_3Ref.current && blackPawn_4Ref.current && blackPawn_5Ref.current && blackPawn_6Ref.current && blackPawn_7Ref.current && blackPawn_8Ref.current)
  {
@@ -291,8 +291,21 @@ const Chessboard = () => {
     }
   };
 
+let whitepieces = [whiteRook_1Ref.current,whiteKnight_1Ref.current,whiteBishop_1Ref.current,whiteQueenRef.current,whiteKingRef.current,whiteBishop_2Ref.current,whiteKnight_2Ref.current,whiteRook_2Ref.current,whitePawn_1Ref.current,whitePawn_2Ref.current,whitePawn_3Ref.current,whitePawn_4Ref.current,whitePawn_5Ref.current,whitePawn_6Ref.current,whitePawn_7Ref.current,whitePawn_8Ref.current] ;
+let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1Ref.current,blackQueenRef.current,blackKingRef.current,blackBishop_2Ref.current,blackKnight_2Ref.current,blackRook_2Ref.current,blackPawn_1Ref.current,blackPawn_2Ref.current,blackPawn_3Ref.current,blackPawn_4Ref.current,blackPawn_5Ref.current,blackPawn_6Ref.current,blackPawn_7Ref.current,blackPawn_8Ref.current] ;
 
 
+  function iswhitepiece(piece)
+  {
+      for(let i = 0 ; i < whitepieces.length ; i++)
+      {
+          if(piece === whitepieces[i])
+          {
+              return true ;
+          }
+      }
+      return false ;
+  }
 
   function draw_pieces() { 
       const canvas = canvasRef.current;
@@ -328,16 +341,27 @@ const Chessboard = () => {
     {
       for(let i = 0 ; i < ImagePositions.length ; i++)
       {
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y>=FinalPosition.y&&ImagePositions[i].y<InitialPosition.y)
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y>FinalPosition.y&&ImagePositions[i].y<InitialPosition.y)
         {
-        
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
           return true ;
-    
-
-          
         }
+
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===80&&iswhitepiece(ImagePositions[i].Image)===false&&FinalPosition.y===InitialPosition.y-80)
+        {
+            captured(ImagePositions[i].Image)
+            return false ;
+        }
+
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===80&&iswhitepiece(ImagePositions[i].Image)===true&&FinalPosition.y===InitialPosition.y-80 && ImagePositions[i].Image!==selectedPiece)
+        {
+            return true ;
+        }
+
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&ImagePositions[i].x===InitialPosition.x&&ImagePositions[i].image!==InitialPosition.y-160&&ImagePositions[i].Image!==selectedPiece )
+        {
+          return true ;
+        }
+    
       }
       return false ;
     }
@@ -345,11 +369,24 @@ const Chessboard = () => {
     {
       for(let i = 0 ; i < ImagePositions.length ; i++)
       {
-
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y<=FinalPosition.y&&ImagePositions[i].y>InitialPosition.y)
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y<FinalPosition.y&&ImagePositions[i].y>InitialPosition.y)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
+          return true ;
+        }
+
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===80&&iswhitepiece(ImagePositions[i].Image)===true&&FinalPosition.y===InitialPosition.y+80)
+        {
+            captured(ImagePositions[i].Image)
+            return false ;
+        }
+
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===80&&iswhitepiece(ImagePositions[i].Image)===false&&FinalPosition.y===InitialPosition.y+80&&ImagePositions[i].Image!==selectedPiece)
+        {
+            return true ;
+        }
+
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&ImagePositions[i].x===InitialPosition.x&&ImagePositions[i].image!==InitialPosition.y+160&&ImagePositions[i].Image!==selectedPiece )
+        {
           return true ;
         }
       }
@@ -359,76 +396,82 @@ const Chessboard = () => {
     {
       for(let i = 0 ; i < ImagePositions.length ; i++)
       {
-        if(InitialPosition.x===FinalPosition.x&&ImagePositions[i].x===FinalPosition.x&&FinalPosition.y>=ImagePositions[i].y&&ImagePositions[i].y>InitialPosition.y)
+        if(InitialPosition.x===FinalPosition.x&&ImagePositions[i].x===FinalPosition.x&&FinalPosition.y>ImagePositions[i].y&&ImagePositions[i].y>InitialPosition.y)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
           return true ;
         }
-        if(InitialPosition.x===FinalPosition.x&&ImagePositions[i].x===FinalPosition.x&&FinalPosition.y<=ImagePositions[i].y&&ImagePositions[i].y<InitialPosition.y)
+        if(InitialPosition.x===FinalPosition.x&&ImagePositions[i].x===FinalPosition.x&&FinalPosition.y<ImagePositions[i].y&&ImagePositions[i].y<InitialPosition.y)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
           return true ;
         }
-        if(InitialPosition.y===FinalPosition.y&&ImagePositions[i].y===FinalPosition.y&&FinalPosition.x>=ImagePositions[i].x&&ImagePositions[i].x>InitialPosition.x)
+        if(InitialPosition.y===FinalPosition.y&&ImagePositions[i].y===FinalPosition.y&&FinalPosition.x>ImagePositions[i].x&&ImagePositions[i].x>InitialPosition.x)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
           return true ;
         }
-        if(InitialPosition.y===FinalPosition.y&&ImagePositions[i].y===FinalPosition.y&&FinalPosition.x<=ImagePositions[i].x&&ImagePositions[i].x<InitialPosition.x)
+        if(InitialPosition.y===FinalPosition.y&&ImagePositions[i].y===FinalPosition.y&&FinalPosition.x<ImagePositions[i].x&&ImagePositions[i].x<InitialPosition.x)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
+          return true ;
+        }
+
+        if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image!==selectedPiece && iswhitepiece(selectedPiece)===iswhitepiece(ImagePositions[i].Image))
+        {
           return true ;
         }
       }
+      for(let i = 0 ; i < ImagePositions.length ; i++)
+      {
+        if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image!==selectedPiece)
+          captured(ImagePositions[i].Image);
+      }
+      
+
       return false ;
     }
     if(selectedPiece===whiteBishop_1Ref.current||selectedPiece===whiteBishop_2Ref.current||selectedPiece===blackBishop_1Ref.current||selectedPiece===blackBishop_2Ref.current)
     {
       for(let i = 0 ; i < ImagePositions.length ; i++)
       {
-        if(FinalPosition.x>InitialPosition.x&&FinalPosition.y>InitialPosition.y&&ImagePositions[i].x>InitialPosition.x&&ImagePositions[i].x<=FinalPosition.x&&ImagePositions[i].y>InitialPosition.y&&ImagePositions[i].y<=FinalPosition.y)
+        if(FinalPosition.x>InitialPosition.x&&FinalPosition.y>InitialPosition.y&&ImagePositions[i].x>InitialPosition.x&&ImagePositions[i].x<FinalPosition.x&&ImagePositions[i].y>InitialPosition.y&&ImagePositions[i].y<FinalPosition.y)
         {
           if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
           {
-            if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-            continue;
+          return true ;
+          }
+          }
+        
+        if(FinalPosition.x<InitialPosition.x&&FinalPosition.y>InitialPosition.y&&ImagePositions[i].x<InitialPosition.x&&ImagePositions[i].x>FinalPosition.x&&ImagePositions[i].y>InitialPosition.y&&ImagePositions[i].y<FinalPosition.y)
+        {
+          if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
+          {
           return true ;
           }
         }
-        if(FinalPosition.x<InitialPosition.x&&FinalPosition.y>InitialPosition.y&&ImagePositions[i].x<InitialPosition.x&&ImagePositions[i].x>=FinalPosition.x&&ImagePositions[i].y>InitialPosition.y&&ImagePositions[i].y<=FinalPosition.y)
+        if(FinalPosition.x>InitialPosition.x&&FinalPosition.y<InitialPosition.y&&ImagePositions[i].x>InitialPosition.x&&ImagePositions[i].x<FinalPosition.x&&ImagePositions[i].y<InitialPosition.y&&ImagePositions[i].y>FinalPosition.y)
         {
           if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
           {
-            if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-            continue;
           return true ;
           }
         }
-        if(FinalPosition.x>InitialPosition.x&&FinalPosition.y<InitialPosition.y&&ImagePositions[i].x>InitialPosition.x&&ImagePositions[i].x<=FinalPosition.x&&ImagePositions[i].y<InitialPosition.y&&ImagePositions[i].y>=FinalPosition.y)
+        if(FinalPosition.x<InitialPosition.x&&FinalPosition.y<InitialPosition.y&&ImagePositions[i].x<InitialPosition.x&&ImagePositions[i].x>FinalPosition.x&&ImagePositions[i].y<InitialPosition.y&&ImagePositions[i].y>FinalPosition.y)
         {
           if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
           {
-            if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-            continue;
           return true ;
           }
         }
-        if(FinalPosition.x<InitialPosition.x&&FinalPosition.y<InitialPosition.y&&ImagePositions[i].x<InitialPosition.x&&ImagePositions[i].x>=FinalPosition.x&&ImagePositions[i].y<InitialPosition.y&&ImagePositions[i].y>=FinalPosition.y)
+        if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image!==selectedPiece && iswhitepiece(selectedPiece)===iswhitepiece(ImagePositions[i].Image))
         {
-          if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
-          {
-            if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-            continue;
           return true ;
-          }
         }
 
   
        
+      }
+      for(let i = 0 ; i < ImagePositions.length ; i++)
+      {
+        if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image!==selectedPiece)
+          captured(ImagePositions[i].Image);
       }
       return false ;
     }
@@ -436,59 +479,64 @@ const Chessboard = () => {
     {
       for(let i = 0 ; i < ImagePositions.length ; i++)
       {
-        if(InitialPosition.x===FinalPosition.x&&ImagePositions[i].x===FinalPosition.x&&FinalPosition.y>=ImagePositions[i].y&&ImagePositions[i].y>InitialPosition.y)
+        if(InitialPosition.x===FinalPosition.x&&ImagePositions[i].x===FinalPosition.x&&FinalPosition.y>ImagePositions[i].y&&ImagePositions[i].y>InitialPosition.y)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
           return true ;
         }
-        if(InitialPosition.x===FinalPosition.x&&ImagePositions[i].x===FinalPosition.x&&FinalPosition.y<=ImagePositions[i].y&&ImagePositions[i].y<InitialPosition.y)
+        if(InitialPosition.x===FinalPosition.x&&ImagePositions[i].x===FinalPosition.x&&FinalPosition.y<ImagePositions[i].y&&ImagePositions[i].y<InitialPosition.y)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
           return true ;
         }
-        if(InitialPosition.y===FinalPosition.y&&ImagePositions[i].y===FinalPosition.y&&FinalPosition.x>=ImagePositions[i].x&&ImagePositions[i].x>InitialPosition.x)
+        if(InitialPosition.y===FinalPosition.y&&ImagePositions[i].y===FinalPosition.y&&FinalPosition.x>ImagePositions[i].x&&ImagePositions[i].x>InitialPosition.x)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
           return true ;
         }
-        if(InitialPosition.y===FinalPosition.y&&ImagePositions[i].y===FinalPosition.y&&FinalPosition.x<=ImagePositions[i].x&&ImagePositions[i].x<InitialPosition.x)
+        if(InitialPosition.y===FinalPosition.y&&ImagePositions[i].y===FinalPosition.y&&FinalPosition.x<ImagePositions[i].x&&ImagePositions[i].x<InitialPosition.x)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
           return true ;
         }
-        if(FinalPosition.x>InitialPosition.x&&FinalPosition.y>InitialPosition.y&&ImagePositions[i].x>InitialPosition.x&&ImagePositions[i].x<=FinalPosition.x&&ImagePositions[i].y>InitialPosition.y&&ImagePositions[i].y<=FinalPosition.y)
+        if(FinalPosition.x>InitialPosition.x&&FinalPosition.y>InitialPosition.y&&ImagePositions[i].x>InitialPosition.x&&ImagePositions[i].x<FinalPosition.x&&ImagePositions[i].y>InitialPosition.y&&ImagePositions[i].y<FinalPosition.y)
+        {
+
+          if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
+          {
+          return true ;
+          }
+          }
+        
+        if(FinalPosition.x<InitialPosition.x&&FinalPosition.y>InitialPosition.y&&ImagePositions[i].x<InitialPosition.x&&ImagePositions[i].x>FinalPosition.x&&ImagePositions[i].y>InitialPosition.y&&ImagePositions[i].y<FinalPosition.y)
         {
           if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
+          {
           return true ;
+          }
         }
-        if(FinalPosition.x<InitialPosition.x&&FinalPosition.y>InitialPosition.y&&ImagePositions[i].x<InitialPosition.x&&ImagePositions[i].x>=FinalPosition.x&&ImagePositions[i].y>InitialPosition.y&&ImagePositions[i].y<=FinalPosition.y)
+        if(FinalPosition.x>InitialPosition.x&&FinalPosition.y<InitialPosition.y&&ImagePositions[i].x>InitialPosition.x&&ImagePositions[i].x<FinalPosition.x&&ImagePositions[i].y<InitialPosition.y&&ImagePositions[i].y>FinalPosition.y)
         {
           if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
+          {
           return true ;
+          }
         }
-        if(FinalPosition.x>InitialPosition.x&&FinalPosition.y<InitialPosition.y&&ImagePositions[i].x>InitialPosition.x&&ImagePositions[i].x<=FinalPosition.x&&ImagePositions[i].y<InitialPosition.y&&ImagePositions[i].y>=FinalPosition.y)
+        if(FinalPosition.x<InitialPosition.x&&FinalPosition.y<InitialPosition.y&&ImagePositions[i].x<InitialPosition.x&&ImagePositions[i].x>FinalPosition.x&&ImagePositions[i].y<InitialPosition.y&&ImagePositions[i].y>FinalPosition.y)
         {
           if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
+          {
           return true ;
+          }
         }
-        if(FinalPosition.x<InitialPosition.x&&FinalPosition.y<InitialPosition.y&&ImagePositions[i].x<InitialPosition.x&&ImagePositions[i].x>=FinalPosition.x&&ImagePositions[i].y<InitialPosition.y&&ImagePositions[i].y>=FinalPosition.y)
+        if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image!==selectedPiece && iswhitepiece(selectedPiece)===iswhitepiece(ImagePositions[i].Image))
         {
-          if((ImagePositions[i].y-InitialPosition.y)*(FinalPosition.x-InitialPosition.x)==(ImagePositions[i].x-InitialPosition.x)*(FinalPosition.y-InitialPosition.y))
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
           return true ;
         }
 
+
+
+      }
+      for(let i = 0 ; i < ImagePositions.length ; i++)
+      {
+        if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image!==selectedPiece)
+          captured(ImagePositions[i].Image);
       }
       return false ;
     }
@@ -496,11 +544,17 @@ const Chessboard = () => {
     {
       for(let i = 0 ; i < ImagePositions.length ; i++)
       {
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y)
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y && ImagePositions[i].Image!==selectedPiece)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
+          if(iswhitepiece(selectedPiece)!==iswhitepiece(ImagePositions[i].Image))
+          {
+            captured(ImagePositions[i].Image);
+            return false ;
+
+          }
+        
           return true ;
+          
         }
       }
       return false ;
@@ -509,20 +563,75 @@ const Chessboard = () => {
     {
       for(let i = 0 ; i < ImagePositions.length ; i++)
       {
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y)
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y && ImagePositions[i].Image!==selectedPiece)
         {
-          if(ImagePositions[i].y===FinalPosition.y && ImagePositions[i].x===FinalPosition.x && ImagePositions[i].Image===selectedPiece)
-          continue;
+          if(iswhitepiece(selectedPiece)!==iswhitepiece(ImagePositions[i].Image))
+          {
+            captured(ImagePositions[i].Image);
+            return false ;
+
+          }
+        
           return true ;
+          
         }
       }
       return false ;
+      
+      
     }
 
   }
+   
+ function captured (finalPiece)
+ { 
+    if(iswhitepiece(selectedPiece))
+    {
+      
+      if(!iswhitepiece(finalPiece))
+      {
+        for(let i=0;i<ImagePositions.length;i++)
+        {
+         
+          if(ImagePositions[i].Image===finalPiece)
+          {
+            setImagePositions(ImagePositions.splice(i,1))
+           
+           
+          }
+        }
+      
+      
+
+
+      }
+
+    }
+    else
+    {
+      if(iswhitepiece(finalPiece))
+      {
+       
+        for(let i=0;i<ImagePositions.length;i++)
+        {
+          if(ImagePositions[i].Image===finalPiece)
+          {
+            setImagePositions(ImagePositions.splice(i,1))
+          
+          }
+        }
+    }
 
 
 
+
+
+    }
+
+
+
+
+ }
 
 
 
@@ -534,28 +643,61 @@ const Chessboard = () => {
     {
       if(FinalPosition.y===InitialPosition.y-80)
       {
-        
+        if(FinalPosition.x===InitialPosition.x)
         return true ;
+        if(FinalPosition.x===InitialPosition.x+80 || FinalPosition.x===InitialPosition.x-80)
+        {
+          for(let i=0;i<ImagePositions.length;i++)
+          {
+            if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y)
+            {
+              if(iswhitepiece(selectedPiece)!==iswhitepiece(ImagePositions[i].Image))
+              {
+                return true ;
+              }
+              
+            }
+          }
+          return false ;
+        }
       }
         if(InitialPosition.y===480)
         {
-          if(FinalPosition.y===InitialPosition.y-160){
+          if(FinalPosition.y===InitialPosition.y-160 && FinalPosition.x===InitialPosition.x){
           
             return true ;
           }
+          return false ;
         }
-        return false ;
+        
 
     }
     if(!whitemove &&(selectedPiece===blackPawn_1Ref.current||selectedPiece===blackPawn_2Ref.current||selectedPiece===blackPawn_3Ref.current||selectedPiece===blackPawn_4Ref.current||selectedPiece===blackPawn_5Ref.current||selectedPiece===blackPawn_6Ref.current||selectedPiece===blackPawn_7Ref.current||selectedPiece===blackPawn_8Ref.current))
     {
       if(FinalPosition.y===InitialPosition.y+80){
-       
+        if(FinalPosition.x===InitialPosition.x)
         return true ;
+        if(FinalPosition.x===InitialPosition.x+80 || FinalPosition.x===InitialPosition.x-80)
+        {
+          for(let i=0;i<ImagePositions.length;i++)
+          {
+            if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y)
+            {
+              if(iswhitepiece(selectedPiece)!==iswhitepiece(ImagePositions[i].Image))
+              {
+                return true ;
+              }
+              
+            }
+          }
+          return false ;
+        }
+       
+      
       }
         if(InitialPosition.y===80)
         {
-          if(FinalPosition.y===InitialPosition.y+160){
+          if(FinalPosition.y===InitialPosition.y+160 && FinalPosition.x===InitialPosition.x){
             
             return true ;
           }
@@ -624,8 +766,8 @@ const Chessboard = () => {
     if(!whitemove && selectedPiece===blackQueenRef.current)
     {
       if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
-       
         return true ;
+      
       }
       return false ;
     }
