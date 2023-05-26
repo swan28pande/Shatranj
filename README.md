@@ -8,7 +8,7 @@
 + 2. Move the pieces using mouse 
 + 3. Restrict the movements of the pieces  
 + 4. Give alternate moves to black and white  
-5. Pieces should capture   
++ 5. Pieces should capture   
 6. Check, Stalemate and checkmate  
 7. Enpassant 
 8. Time 
