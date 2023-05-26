@@ -38,6 +38,8 @@ import BlackQueen from '../assets/bqueen.svg';
 import WhiteKing from '../assets/wking.svg';
 import BlackKing from '../assets/bking.svg';
 
+import Side_canvas from "./sidecanvas";
+import './chessboard.css' ; 
 
 const Chessboard = () => {
   const canvasRef = useRef(null);
@@ -1019,14 +1021,21 @@ const checkImageAtPosition = (x, y) => {
 
   return (
     <div>
+     
       <h1>Chess</h1>
       <button onClick={drawBoard} disabled={!imagesLoaded}>
         Draw
       </button>
+      <div className="match_screen"> 
+      <div className="component1"><Side_canvas/></div>
+      <div className="component2">
       <canvas ref={canvasRef} width={650} height={650} 
        onMouseDown={handleMouseDown}
        onMouseMove={handleMouseMove}
        onMouseUp={handleMouseUp} ></canvas>
+      </div>
+      </div>
+    
     </div>
   );
 };

@@ -1,0 +1,22 @@
+
+.match_screen {
+
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+
+}
+
+.component1,
+.component2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.component2 {
+    left : 150px;
+}
