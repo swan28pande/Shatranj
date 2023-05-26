@@ -707,7 +707,7 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     }
     if(whitemove && (selectedPiece===whiteRook_1Ref.current||selectedPiece===whiteRook_2Ref.current||selectedPiece===blackRook_1Ref.current||selectedPiece===blackRook_2Ref.current))
     {
-      if(FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+      if(!(InitialPosition.x===FinalPosition.x && InitialPosition.y===FinalPosition.y )&&(FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x)){
         
         return true ;
       }
@@ -716,7 +716,7 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     }
     if(!whitemove &&(selectedPiece===blackRook_1Ref.current||selectedPiece===blackRook_2Ref.current))
     {
-      if(FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+      if(!(InitialPosition.x===FinalPosition.x && InitialPosition.y===FinalPosition.y )&&(FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x)){
         
         return true ;
       }
@@ -741,7 +741,7 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     }
     if(whitemove && (selectedPiece===whiteBishop_1Ref.current||selectedPiece===whiteBishop_2Ref.current))
     {
-      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)){
+      if(!(InitialPosition.x===FinalPosition.x && InitialPosition.y===FinalPosition.y )&&(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x))){
        
         return true ;
       }
@@ -749,7 +749,7 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     }
     if(!whitemove && (selectedPiece===blackBishop_1Ref.current||selectedPiece===blackBishop_2Ref.current))
     {
-      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)){
+      if(!(InitialPosition.x===FinalPosition.x && InitialPosition.y===FinalPosition.y )&&(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x))){
         
         return true ;
       }
@@ -757,15 +757,15 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     }
     if(whitemove && selectedPiece===whiteQueenRef.current)
     {
-      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
-        
+      if(!(InitialPosition.x===FinalPosition.x && InitialPosition.y===FinalPosition.y )&&(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x)){
         return true ;
+      
       }
       return false ;
     }
     if(!whitemove && selectedPiece===blackQueenRef.current)
     {
-      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+      if(!(InitialPosition.x===FinalPosition.x && InitialPosition.y===FinalPosition.y )&&(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x)){
         return true ;
       
       }
@@ -781,7 +781,7 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     } 
     if(!whitemove && selectedPiece===blackKingRef.current)
     {
-      if(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x){
+      if(!(InitialPosition.x===FinalPosition.x && InitialPosition.y===FinalPosition.y )&&(Math.abs(FinalPosition.y-InitialPosition.y)===Math.abs(FinalPosition.x-InitialPosition.x)||FinalPosition.y===InitialPosition.y||FinalPosition.x===InitialPosition.x)){
         
         return true ;
       }
