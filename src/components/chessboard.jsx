@@ -1,46 +1,45 @@
 import React, { useRef, useEffect, useState } from "react";
-import WhitePawn_1 from '../assets/wpawn_1.svg';
-import WhitePawn_2 from '../assets/wpawn_2.svg';
-import WhitePawn_3 from '../assets/wpawn_3.svg';
-import WhitePawn_4 from '../assets/wpawn_4.svg';
-import WhitePawn_5 from '../assets/wpawn_5.svg';
-import WhitePawn_6 from '../assets/wpawn_6.svg';
-import WhitePawn_7 from '../assets/wpawn_7.svg';
-import WhitePawn_8 from '../assets/wpawn_8.svg';
+import WhitePawn_1 from '../assets/Pieces/wpawn_1.svg';
+import WhitePawn_2 from '../assets/Pieces/wpawn_2.svg';
+import WhitePawn_3 from '../assets/Pieces/wpawn_3.svg';
+import WhitePawn_4 from '../assets/Pieces/wpawn_4.svg';
+import WhitePawn_5 from '../assets/Pieces/wpawn_5.svg';
+import WhitePawn_6 from '../assets/Pieces/wpawn_6.svg';
+import WhitePawn_7 from '../assets/Pieces/wpawn_7.svg';
+import WhitePawn_8 from '../assets/Pieces/wpawn_8.svg';
 
 
-import BlackPawn_1 from '../assets/bpawn_1.svg';
-import BlackPawn_2 from '../assets/bpawn_2.svg';
-import BlackPawn_3 from '../assets/bpawn_3.svg';
-import BlackPawn_4 from '../assets/bpawn_4.svg';
-import BlackPawn_5 from '../assets/bpawn_5.svg';
-import BlackPawn_6 from '../assets/bpawn_6.svg';
-import BlackPawn_7 from '../assets/bpawn_7.svg';
-import BlackPawn_8 from '../assets/bpawn_8.svg';
+import BlackPawn_1 from '../assets/Pieces/bpawn_1.svg';
+import BlackPawn_2 from '../assets/Pieces/bpawn_2.svg';
+import BlackPawn_3 from '../assets/Pieces/bpawn_3.svg';
+import BlackPawn_4 from '../assets/Pieces/bpawn_4.svg';
+import BlackPawn_5 from '../assets/Pieces/bpawn_5.svg';
+import BlackPawn_6 from '../assets/Pieces/bpawn_6.svg';
+import BlackPawn_7 from '../assets/Pieces/bpawn_7.svg';
+import BlackPawn_8 from '../assets/Pieces/bpawn_8.svg';
 
-import WhiteKnight_1 from '../assets/wknight_1.svg';
-import WhiteKnight_2 from '../assets/wknight_2.svg';
-import BlackKnight_1 from '../assets/bknight_1.svg';
-import BlackKnight_2 from '../assets/bknight_2.svg';
+import WhiteKnight_1 from '../assets/Pieces/wknight_1.svg';
+import WhiteKnight_2 from '../assets/Pieces/wknight_2.svg';
+import BlackKnight_1 from '../assets/Pieces/bknight_1.svg';
+import BlackKnight_2 from '../assets/Pieces/bknight_2.svg';
 
-import WhiteBishop_1 from '../assets/wbishop_1.svg';
-import WhiteBishop_2 from '../assets/wbishop_2.svg';
-import BlackBishop_1 from '../assets/bbishop_1.svg';
-import BlackBishop_2 from '../assets/bbishop_2.svg';
+import WhiteBishop_1 from '../assets/Pieces/wbishop_1.svg';
+import WhiteBishop_2 from '../assets/Pieces/wbishop_2.svg';
+import BlackBishop_1 from '../assets/Pieces/bbishop_1.svg';
+import BlackBishop_2 from '../assets/Pieces/bbishop_2.svg';
 
-import WhiteRook_1 from '../assets/wrook_1.svg';
-import WhiteRook_2 from '../assets/wrook_2.svg';
-import BlackRook_1 from '../assets/brook_1.svg';
-import BlackRook_2 from '../assets/brook_2.svg';
+import WhiteRook_1 from '../assets/Pieces/wrook_1.svg';
+import WhiteRook_2 from '../assets/Pieces/wrook_2.svg';
+import BlackRook_1 from '../assets/Pieces/brook_1.svg';
+import BlackRook_2 from '../assets/Pieces/brook_2.svg';
 
-import WhiteQueen from '../assets/wqueen.svg';
-import BlackQueen from '../assets/bqueen.svg';
-import WhiteKing from '../assets/wking.svg';
-import BlackKing from '../assets/bking.svg';
+import WhiteQueen from '../assets/Pieces/wqueen.svg';
+import BlackQueen from '../assets/Pieces/bqueen.svg';
+import WhiteKing from '../assets/Pieces/wking.svg';
+import BlackKing from '../assets/Pieces/bking.svg';
 
 import Side_canvas from "./sidecanvas";
 import './chessboard.css' ; 
-
 const Chessboard = () => {
   const canvasRef = useRef(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -316,7 +315,7 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
       ctx.clearRect(0,0,canvas.width,canvas.height) ;
       draw_squares() ;
       for(let i = 0 ; i < ImagePositions.length ; i++){
-          ctx.drawImage(ImagePositions[i].Image,ImagePositions[i].x,ImagePositions[i].y,80,80) ; 
+          ctx.drawImage(ImagePositions[i].Image,ImagePositions[i].x,ImagePositions[i].y,70,70) ; 
       }
   }
 
@@ -329,11 +328,11 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
         if ((i + j) % 2 === 0) {
-          ctx.fillStyle = "white";
+          ctx.fillStyle = "#FCF2FF";
         } else {
-          ctx.fillStyle = "purple";
+          ctx.fillStyle = "#A85EAC";
         }
-        ctx.fillRect(i * 80, j * 80, 80, 80);
+        ctx.fillRect(i * 70, j * 70, 70, 70);
       }
     }
   }
@@ -348,18 +347,18 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
           return true ;
         }
 
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===80&&iswhitepiece(ImagePositions[i].Image)===false&&FinalPosition.y===InitialPosition.y-80)
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===70&&iswhitepiece(ImagePositions[i].Image)===false&&FinalPosition.y===InitialPosition.y-70)
         {
             captured(ImagePositions[i].Image)
             return false ;
         }
 
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===80&&iswhitepiece(ImagePositions[i].Image)===true&&FinalPosition.y===InitialPosition.y-80 && ImagePositions[i].Image!==selectedPiece)
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===70&&iswhitepiece(ImagePositions[i].Image)===true&&FinalPosition.y===InitialPosition.y-70 && ImagePositions[i].Image!==selectedPiece)
         {
             return true ;
         }
 
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&ImagePositions[i].x===InitialPosition.x&&ImagePositions[i].image!==InitialPosition.y-160&&ImagePositions[i].Image!==selectedPiece )
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&ImagePositions[i].x===InitialPosition.x&&ImagePositions[i].image!==InitialPosition.y-140&&ImagePositions[i].Image!==selectedPiece )
         {
           return true ;
         }
@@ -376,18 +375,18 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
           return true ;
         }
 
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===80&&iswhitepiece(ImagePositions[i].Image)===true&&FinalPosition.y===InitialPosition.y+80)
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===70&&iswhitepiece(ImagePositions[i].Image)===true&&FinalPosition.y===InitialPosition.y+70)
         {
             captured(ImagePositions[i].Image)
             return false ;
         }
 
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===80&&iswhitepiece(ImagePositions[i].Image)===false&&FinalPosition.y===InitialPosition.y+80&&ImagePositions[i].Image!==selectedPiece)
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&Math.abs(ImagePositions[i].x-InitialPosition.x)===70&&iswhitepiece(ImagePositions[i].Image)===false&&FinalPosition.y===InitialPosition.y+70&&ImagePositions[i].Image!==selectedPiece)
         {
             return true ;
         }
 
-        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&ImagePositions[i].x===InitialPosition.x&&ImagePositions[i].image!==InitialPosition.y+160&&ImagePositions[i].Image!==selectedPiece )
+        if(ImagePositions[i].x===FinalPosition.x&&ImagePositions[i].y===FinalPosition.y&&ImagePositions[i].x===InitialPosition.x&&ImagePositions[i].image!==InitialPosition.y+140&&ImagePositions[i].Image!==selectedPiece )
         {
           return true ;
         }
@@ -643,11 +642,11 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
 
     if(whitemove&& (selectedPiece===whitePawn_1Ref.current||selectedPiece===whitePawn_2Ref.current||selectedPiece===whitePawn_3Ref.current||selectedPiece===whitePawn_4Ref.current||selectedPiece===whitePawn_5Ref.current||selectedPiece===whitePawn_5Ref.current||selectedPiece===whitePawn_6Ref.current||selectedPiece===whitePawn_7Ref.current||selectedPiece===whitePawn_8Ref.current))
     {
-      if(FinalPosition.y===InitialPosition.y-80)
+      if(FinalPosition.y===InitialPosition.y-70)
       {
         if(FinalPosition.x===InitialPosition.x)
         return true ;
-        if(FinalPosition.x===InitialPosition.x+80 || FinalPosition.x===InitialPosition.x-80)
+        if(FinalPosition.x===InitialPosition.x+70 || FinalPosition.x===InitialPosition.x-70)
         {
           for(let i=0;i<ImagePositions.length;i++)
           {
@@ -663,9 +662,9 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
           return false ;
         }
       }
-        if(InitialPosition.y===480)
+        if(InitialPosition.y===420)
         {
-          if(FinalPosition.y===InitialPosition.y-160 && FinalPosition.x===InitialPosition.x){
+          if(FinalPosition.y===InitialPosition.y-140 && FinalPosition.x===InitialPosition.x){
           
             return true ;
           }
@@ -676,10 +675,10 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     }
     if(!whitemove &&(selectedPiece===blackPawn_1Ref.current||selectedPiece===blackPawn_2Ref.current||selectedPiece===blackPawn_3Ref.current||selectedPiece===blackPawn_4Ref.current||selectedPiece===blackPawn_5Ref.current||selectedPiece===blackPawn_6Ref.current||selectedPiece===blackPawn_7Ref.current||selectedPiece===blackPawn_8Ref.current))
     {
-      if(FinalPosition.y===InitialPosition.y+80){
+      if(FinalPosition.y===InitialPosition.y+70){
         if(FinalPosition.x===InitialPosition.x)
         return true ;
-        if(FinalPosition.x===InitialPosition.x+80 || FinalPosition.x===InitialPosition.x-80)
+        if(FinalPosition.x===InitialPosition.x+70 || FinalPosition.x===InitialPosition.x-70)
         {
           for(let i=0;i<ImagePositions.length;i++)
           {
@@ -697,9 +696,9 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
        
       
       }
-        if(InitialPosition.y===80)
+        if(InitialPosition.y===70)
         {
-          if(FinalPosition.y===InitialPosition.y+160 && FinalPosition.x===InitialPosition.x){
+          if(FinalPosition.y===InitialPosition.y+140 && FinalPosition.x===InitialPosition.x){
             
             return true ;
           }
@@ -727,7 +726,7 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     }
     if(whitemove && (selectedPiece===whiteKnight_1Ref.current||selectedPiece===whiteKnight_2Ref.current))
     {
-      if((FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x-80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x-80)){
+      if((FinalPosition.y===InitialPosition.y+70&&FinalPosition.x===InitialPosition.x+140)||(FinalPosition.y===InitialPosition.y-70&&FinalPosition.x===InitialPosition.x+140)||(FinalPosition.y===InitialPosition.y+70&&FinalPosition.x===InitialPosition.x-140)||(FinalPosition.y===InitialPosition.y-70&&FinalPosition.x===InitialPosition.x-140)||(FinalPosition.y===InitialPosition.y+140&&FinalPosition.x===InitialPosition.x+70)||(FinalPosition.y===InitialPosition.y-140&&FinalPosition.x===InitialPosition.x+70)||(FinalPosition.y===InitialPosition.y+140&&FinalPosition.x===InitialPosition.x-70)||(FinalPosition.y===InitialPosition.y-140&&FinalPosition.x===InitialPosition.x-70)){
         
         return true ;
       }
@@ -735,7 +734,7 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
     }
     if(!whitemove && (selectedPiece===blackKnight_1Ref.current||selectedPiece===blackKnight_2Ref.current))
     {
-      if((FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x+160)||(FinalPosition.y===InitialPosition.y+80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y-80&&FinalPosition.x===InitialPosition.x-160)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x+80)||(FinalPosition.y===InitialPosition.y+160&&FinalPosition.x===InitialPosition.x-80)||(FinalPosition.y===InitialPosition.y-160&&FinalPosition.x===InitialPosition.x-80)){
+      if((FinalPosition.y===InitialPosition.y+70&&FinalPosition.x===InitialPosition.x+140)||(FinalPosition.y===InitialPosition.y-70&&FinalPosition.x===InitialPosition.x+140)||(FinalPosition.y===InitialPosition.y+70&&FinalPosition.x===InitialPosition.x-140)||(FinalPosition.y===InitialPosition.y-70&&FinalPosition.x===InitialPosition.x-140)||(FinalPosition.y===InitialPosition.y+140&&FinalPosition.x===InitialPosition.x+70)||(FinalPosition.y===InitialPosition.y-140&&FinalPosition.x===InitialPosition.x+70)||(FinalPosition.y===InitialPosition.y+140&&FinalPosition.x===InitialPosition.x-70)||(FinalPosition.y===InitialPosition.y-140&&FinalPosition.x===InitialPosition.x-70)){
        
         return true ;
       }
@@ -795,63 +794,65 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
   }
 
   function drawBoard() {
+
     if (!imagesLoaded) {
       return;
     }
-
+setwhitemove(true );
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     let image_pos = [];
     // Drawing the chessboard
     draw_squares() ;
 
+
     // Drawing the pawns
 
-    ctx.drawImage(whitePawn_1Ref.current, 0 * 80, 6* 80, 80, 80);
-    image_pos.push({x: 0*80 , y: 6*80 , Image:whitePawn_1Ref.current});
-    ctx.drawImage(whitePawn_2Ref.current, 1 * 80, 6 * 80, 80, 80);
-    image_pos.push({x: 1*80 , y: 6*80 , Image:whitePawn_2Ref.current});
-    ctx.drawImage(whitePawn_3Ref.current, 2 * 80, 6 * 80, 80, 80);
-    image_pos.push({x: 2*80 , y: 6*80 , Image:whitePawn_3Ref.current});
-    ctx.drawImage(whitePawn_4Ref.current, 3 * 80, 6 * 80, 80, 80);
-    image_pos.push({x: 3*80 , y: 6*80 , Image:whitePawn_4Ref.current});
-    ctx.drawImage(whitePawn_5Ref.current, 4 * 80, 6 * 80, 80, 80);
-    image_pos.push({x: 4*80 , y: 6*80 , Image:whitePawn_5Ref.current});
-    ctx.drawImage(whitePawn_6Ref.current, 5 * 80, 6 * 80, 80, 80);
-    image_pos.push({x: 5*80 , y: 6*80 , Image:whitePawn_6Ref.current});
-    ctx.drawImage(whitePawn_7Ref.current, 6 * 80, 6 * 80, 80, 80);
-    image_pos.push({x: 6*80 , y: 6*80 , Image:whitePawn_7Ref.current});
-    ctx.drawImage(whitePawn_8Ref.current, 7 * 80, 6 * 80, 80, 80);
-    image_pos.push({x: 7*80 , y: 6*80 , Image:whitePawn_8Ref.current});
+    ctx.drawImage(whitePawn_1Ref.current, 0 * 70, 6* 70, 70, 70);
+    image_pos.push({x: 0*70 , y: 6*70 , Image:whitePawn_1Ref.current});
+    ctx.drawImage(whitePawn_2Ref.current, 1 * 70, 6 * 70, 70, 70);
+    image_pos.push({x: 1*70 , y: 6*70 , Image:whitePawn_2Ref.current});
+    ctx.drawImage(whitePawn_3Ref.current, 2 * 70, 6 * 70, 70, 70);
+    image_pos.push({x: 2*70 , y: 6*70 , Image:whitePawn_3Ref.current});
+    ctx.drawImage(whitePawn_4Ref.current, 3 * 70, 6 * 70, 70, 70);
+    image_pos.push({x: 3*70 , y: 6*70 , Image:whitePawn_4Ref.current});
+    ctx.drawImage(whitePawn_5Ref.current, 4 * 70, 6 * 70, 70, 70);
+    image_pos.push({x: 4*70 , y: 6*70 , Image:whitePawn_5Ref.current});
+    ctx.drawImage(whitePawn_6Ref.current, 5 * 70, 6 * 70, 70, 70);
+    image_pos.push({x: 5*70 , y: 6*70 , Image:whitePawn_6Ref.current});
+    ctx.drawImage(whitePawn_7Ref.current, 6 * 70, 6 * 70, 70, 70);
+    image_pos.push({x: 6*70 , y: 6*70 , Image:whitePawn_7Ref.current});
+    ctx.drawImage(whitePawn_8Ref.current, 7 * 70, 6 * 70, 70, 70);
+    image_pos.push({x: 7*70 , y: 6*70 , Image:whitePawn_8Ref.current});
 
 
-    ctx.drawImage(blackPawn_1Ref.current, 0 * 80, 1 * 80, 80, 80);
-    image_pos.push({x: 0*80 , y: 1*80 , Image:blackPawn_1Ref.current});
-    ctx.drawImage(blackPawn_2Ref.current, 1 * 80, 1 * 80, 80, 80);
-    image_pos.push({x: 1*80 , y: 1*80 , Image:blackPawn_2Ref.current});
-    ctx.drawImage(blackPawn_3Ref.current, 2 * 80, 1 * 80, 80, 80);
-    image_pos.push({x: 2*80 , y: 1*80 , Image:blackPawn_3Ref.current});
-    ctx.drawImage(blackPawn_4Ref.current, 3 * 80, 1 * 80, 80, 80);
-    image_pos.push({x: 3*80 , y: 1*80 , Image:blackPawn_4Ref.current});
-    ctx.drawImage(blackPawn_5Ref.current, 4 * 80, 1 * 80, 80, 80);
-    image_pos.push({x: 4*80 , y: 1*80 , Image:blackPawn_5Ref.current});
-    ctx.drawImage(blackPawn_6Ref.current, 5 * 80, 1 * 80, 80, 80);
-    image_pos.push({x: 5*80 , y: 1*80 , Image:blackPawn_6Ref.current});
-    ctx.drawImage(blackPawn_7Ref.current, 6 * 80, 1 * 80, 80, 80);
-    image_pos.push({x: 6*80 , y: 1*80 , Image:blackPawn_7Ref.current});
-    ctx.drawImage(blackPawn_8Ref.current, 7 * 80, 1 * 80, 80, 80);
-    image_pos.push({x: 7*80 , y: 1*80 , Image:blackPawn_8Ref.current});
+    ctx.drawImage(blackPawn_1Ref.current, 0 * 70, 1 * 70, 70, 70);
+    image_pos.push({x: 0*70 , y: 1*70 , Image:blackPawn_1Ref.current});
+    ctx.drawImage(blackPawn_2Ref.current, 1 * 70, 1 * 70, 70, 70);
+    image_pos.push({x: 1*70 , y: 1*70 , Image:blackPawn_2Ref.current});
+    ctx.drawImage(blackPawn_3Ref.current, 2 * 70, 1 * 70, 70, 70);
+    image_pos.push({x: 2*70 , y: 1*70 , Image:blackPawn_3Ref.current});
+    ctx.drawImage(blackPawn_4Ref.current, 3 * 70, 1 * 70, 70, 70);
+    image_pos.push({x: 3*70 , y: 1*70 , Image:blackPawn_4Ref.current});
+    ctx.drawImage(blackPawn_5Ref.current, 4 * 70, 1 * 70, 70, 70);
+    image_pos.push({x: 4*70 , y: 1*70 , Image:blackPawn_5Ref.current});
+    ctx.drawImage(blackPawn_6Ref.current, 5 * 70, 1 * 70, 70, 70);
+    image_pos.push({x: 5*70 , y: 1*70 , Image:blackPawn_6Ref.current});
+    ctx.drawImage(blackPawn_7Ref.current, 6 * 70, 1 * 70, 70, 70);
+    image_pos.push({x: 6*70 , y: 1*70 , Image:blackPawn_7Ref.current});
+    ctx.drawImage(blackPawn_8Ref.current, 7 * 70, 1 * 70, 70, 70);
+    image_pos.push({x: 7*70 , y: 1*70 , Image:blackPawn_8Ref.current});
 
 
     // Drawing the knights
-    ctx.drawImage(whiteKnight_1Ref.current, 1 * 80, 7 * 80, 80, 80);
-    image_pos.push({x: 1*80 , y: 7*80 , Image:whiteKnight_1Ref.current});
-    ctx.drawImage(whiteKnight_2Ref.current, 6 * 80, 7 * 80, 80, 80);
-    image_pos.push({x: 6*80 , y: 7*80 , Image:whiteKnight_2Ref.current});
-    ctx.drawImage(blackKnight_1Ref.current, 1 * 80, 0 * 80, 80, 80);
-    image_pos.push({x: 1*80 , y: 0*80 , Image:blackKnight_1Ref.current});
-    ctx.drawImage(blackKnight_2Ref.current, 6 * 80, 0 * 80, 80, 80);
-    image_pos.push({x: 6*80 , y: 0*80 , Image:blackKnight_2Ref.current});
+    ctx.drawImage(whiteKnight_1Ref.current, 1 * 70, 7 * 70, 70, 70);
+    image_pos.push({x: 1*70 , y: 7*70 , Image:whiteKnight_1Ref.current});
+    ctx.drawImage(whiteKnight_2Ref.current, 6 * 70, 7 * 70, 70, 70);
+    image_pos.push({x: 6*70 , y: 7*70 , Image:whiteKnight_2Ref.current});
+    ctx.drawImage(blackKnight_1Ref.current, 1 * 70, 0 * 70, 70, 70);
+    image_pos.push({x: 1*70 , y: 0*70 , Image:blackKnight_1Ref.current});
+    ctx.drawImage(blackKnight_2Ref.current, 6 * 70, 0 * 70, 70, 70);
+    image_pos.push({x: 6*70 , y: 0*70 , Image:blackKnight_2Ref.current});
 
 
 
@@ -860,45 +861,46 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
 
 
     // Drawing the bishops
-    ctx.drawImage(whiteBishop_1Ref.current, 2 * 80, 7 * 80, 80, 80);
-    image_pos.push({x: 2*80 , y: 7*80 , Image:whiteBishop_1Ref.current});
-    ctx.drawImage(whiteBishop_2Ref.current, 5 * 80, 7 * 80, 80, 80);
-    image_pos.push({x: 5*80 , y: 7*80 , Image:whiteBishop_2Ref.current});
-    ctx.drawImage(blackBishop_1Ref.current, 2 * 80, 0 * 80, 80, 80);
-    image_pos.push({x: 2*80 , y: 0*80 , Image:blackBishop_1Ref.current});
-    ctx.drawImage(blackBishop_2Ref.current, 5 * 80, 0 * 80, 80, 80);
-    image_pos.push({x: 5*80 , y: 0*80 , Image:blackBishop_2Ref.current});
+    ctx.drawImage(whiteBishop_1Ref.current, 2 * 70, 7 * 70, 70, 70);
+    image_pos.push({x: 2*70 , y: 7*70 , Image:whiteBishop_1Ref.current});
+    ctx.drawImage(whiteBishop_2Ref.current, 5 * 70, 7 * 70, 70, 70);
+    image_pos.push({x: 5*70 , y: 7*70 , Image:whiteBishop_2Ref.current});
+    ctx.drawImage(blackBishop_1Ref.current, 2 * 70, 0 * 70, 70, 70);
+    image_pos.push({x: 2*70 , y: 0*70 , Image:blackBishop_1Ref.current});
+    ctx.drawImage(blackBishop_2Ref.current, 5 * 70, 0 * 70, 70, 70);
+    image_pos.push({x: 5*70 , y: 0*70 , Image:blackBishop_2Ref.current});
 
 
 
     // Drawing the rooks
-    ctx.drawImage(whiteRook_1Ref.current, 0 * 80, 7 * 80, 80, 80);
-    image_pos.push({x: 0*80 , y: 7*80 , Image:whiteRook_1Ref.current});
-    ctx.drawImage(whiteRook_2Ref.current, 7 * 80, 7 * 80, 80, 80);
-    image_pos.push({x: 7*80 , y: 7*80 , Image:whiteRook_2Ref.current});
-    ctx.drawImage(blackRook_1Ref.current, 0 * 80, 0 * 80, 80, 80);
-    image_pos.push({x: 0*80 , y: 0*80 , Image:blackRook_1Ref.current});
-    ctx.drawImage(blackRook_2Ref.current, 7 * 80, 0 * 80, 80, 80);
-    image_pos.push({x: 7*80 , y: 0*80 , Image:blackRook_2Ref.current});
+    ctx.drawImage(whiteRook_1Ref.current, 0 * 70, 7 * 70, 70, 70);
+    image_pos.push({x: 0*70 , y: 7*70 , Image:whiteRook_1Ref.current});
+    ctx.drawImage(whiteRook_2Ref.current, 7 * 70, 7 * 70, 70, 70);
+    image_pos.push({x: 7*70 , y: 7*70 , Image:whiteRook_2Ref.current});
+    ctx.drawImage(blackRook_1Ref.current, 0 * 70, 0 * 70, 70, 70);
+    image_pos.push({x: 0*70 , y: 0*70 , Image:blackRook_1Ref.current});
+    ctx.drawImage(blackRook_2Ref.current, 7 * 70, 0 * 70, 70, 70);
+    image_pos.push({x: 7*70 , y: 0*70 , Image:blackRook_2Ref.current});
 
 
 
     // Drawing the queens
-    ctx.drawImage(whiteQueenRef.current, 3 * 80, 7 * 80, 80, 80);
-    image_pos.push({x: 3*80 , y: 7*80 , Image:whiteQueenRef.current});
-    ctx.drawImage(blackQueenRef.current, 3 * 80, 0 * 80, 80, 80);
-    image_pos.push({x: 3*80 , y: 0*80 , Image:blackQueenRef.current});
+    ctx.drawImage(whiteQueenRef.current, 3 * 70, 7 * 70, 70, 70);
+    image_pos.push({x: 3*70 , y: 7*70 , Image:whiteQueenRef.current});
+    ctx.drawImage(blackQueenRef.current, 3 * 70, 0 * 70, 70, 70);
+    image_pos.push({x: 3*70 , y: 0*70 , Image:blackQueenRef.current});
 
     // Drawing the kings
-    ctx.drawImage(whiteKingRef.current, 4 * 80, 7 * 80, 80, 80);
-    image_pos.push({x: 4*80 , y: 7*80 , Image:whiteKingRef.current});
-    ctx.drawImage(blackKingRef.current, 4 * 80, 0 * 80, 80, 80);
-    image_pos.push({x: 4*80 , y: 0*80 , Image:blackKingRef.current});
+    ctx.drawImage(whiteKingRef.current, 4 * 70, 7 * 70, 70, 70);
+    image_pos.push({x: 4*70 , y: 7*70 , Image:whiteKingRef.current});
+    ctx.drawImage(blackKingRef.current, 4 * 70, 0 * 70, 70, 70);
+    image_pos.push({x: 4*70 , y: 0*70 , Image:blackKingRef.current});
+
 
     setImagePositions(image_pos);
     console.log(image_pos); 
 
-    checkImageAtPosition(160, 480); 
+ 
 
   };
 
@@ -910,8 +912,8 @@ let blackpieces = [blackRook_1Ref.current,blackKnight_1Ref.current,blackBishop_1
      const rect = canvas.getBoundingClientRect();
      let x = e.clientX - rect.left; 
      let y = e.clientY - rect.top;
-      x = Math.floor(x/80)*80 ;
-      y=Math.floor(y/80)*80 ;
+      x = Math.floor(x/70)*70 ;
+      y=Math.floor(y/70)*70 ;
       const clickedPiece  = checkImageAtPosition(x,y); 
      setSelectedPiece(clickedPiece); 
      setInitialPosition({x:x , y:y});
@@ -962,14 +964,14 @@ const handleMouseUp = (e) => {
   let image_pos = ImagePositions ;
 
 
-    // image_pos.find((x)=> x.Image===selectedPiece).x = Math.floor(offsetX/80)*80 ;
-    image_pos.find((x)=> x.Image===selectedPiece).x = Math.floor(offsetX/80)*80;
+    // image_pos.find((x)=> x.Image===selectedPiece).x = Math.floor(offsetX/70)*70 ;
+    image_pos.find((x)=> x.Image===selectedPiece).x = Math.floor(offsetX/70)*70;
 
-    image_pos.find((x)=> x.Image===selectedPiece).y = Math.floor(offsetY/80)*80 ;
-    FinalPosition.x = Math.floor(offsetX/80)*80;
-    FinalPosition.y = Math.floor(offsetY/80)*80;
+    image_pos.find((x)=> x.Image===selectedPiece).y = Math.floor(offsetY/70)*70 ;
+    FinalPosition.x = Math.floor(offsetX/70)*70;
+    FinalPosition.y = Math.floor(offsetY/70)*70;
 
-    setFinalPosition({ x: Math.floor(offsetX/80)*80, y: Math.floor(offsetY/80)*80 });
+    setFinalPosition({ x: Math.floor(offsetX/70)*70, y: Math.floor(offsetY/70)*70 });
     console.log(FinalPosition)
     if(checklegallity() && !checkinbetween())
     {
@@ -1022,19 +1024,23 @@ const checkImageAtPosition = (x, y) => {
   return (
     <div>
      
-      <h1>Chess</h1>
-      <button onClick={drawBoard} disabled={!imagesLoaded}>
-        Draw
-      </button>
+      <h1 className="Title">Shatranj</h1>
+      
       <div className="match_screen"> 
       <div className="component1"><Side_canvas/></div>
       <div className="component2">
-      <canvas ref={canvasRef} width={650} height={650} 
+      <canvas ref={canvasRef} className="chessboard" width={560} height={560} 
        onMouseDown={handleMouseDown}
        onMouseMove={handleMouseMove}
        onMouseUp={handleMouseUp} ></canvas>
       </div>
       </div>
+      <div className="PlayButton">
+      <button onClick={drawBoard} disabled={!imagesLoaded}>
+        Play
+      </button>
+      </div>
+      
     
     </div>
   );

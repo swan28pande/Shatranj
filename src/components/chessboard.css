@@ -13,10 +13,81 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
 }
 
 .component2 {
-    left : 150px;
+    left : 240px;
+   
 }
+
+.chessboard {
+    /* border: 1px solid black; */
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1);
+
+}
+
+body {
+    background-image: linear-gradient(to bottom right, #9071A4, #3E4478);
+  }
+
+  font-face {
+    font-family: 'Slate Pro';
+    font-style: normal;
+    font-weight: bold;
+  }
+  
+  body {
+    font-family: 'Slate Pro', Arial, sans-serif;
+    color: white;
+    /* Other CSS properties */
+  }
+  .Title {
+    font-size: 30px;
+    line-height: 60px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  button{
+    position: absolute;
+    bottom: 10px;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    font-family: 'Slate Pro', Arial, sans-serif;
+    font: bold;
+    font-size: 15px;
+   background-color: #826F96;
+   color: white;
+   box-shadow: 0 0 30px white;
+   outline: 2px solid cyan;
+   border: none;
+   transition: transform 0.3s;
+
+
+  }
+  .PlayButton {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  }
+
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+
+  
+  
+  
+  
+  
+  
