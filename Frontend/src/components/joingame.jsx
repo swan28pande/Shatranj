@@ -1,7 +1,5 @@
 import React,{ useState,useEffect }  from "react";
-import { BrowserRouter , Routes , Route } from "react-router-dom";
-
-import { socket } from './socket';
+import { socket } from '../socket.js';
 
 
 
@@ -12,21 +10,29 @@ const join_game = () => {
 
     useEffect(() => {
         // Establish a connection to the Socket.IO server
-        const socket = io("http://localhost:4000");
-    
-    
-        // Cleanup the socket connection when the component unmounts
-      }, []);
+        socket.connect();
+
+        socket.on("roomJoined", (message) => {
+            console.log(message); // Print the message to the console
+          });
+      },
+       []);
 
     return (
       
         <div>
  
             <h1>Join Game</h1>
-            <input onChange = { (e) => {setGame_id(e.target.value)}}/>
-            <button onClick= {()=> {
-                io.emit('join-game',game_id); 
-            }}>Join</button>
+            <div>
+                <input onChange = { (e) => {setGame_id(e.target.value)}}/>
+                <button type = "submit" onClick= {()=> {
+                    socket.emit('join-game',game_id);
+                }}>Join</button>
+            </div>
+            {/* <input onChange = { (e) => {setGame_id(e.target.value)}}/>
+            <button type = "submit" onClick= {()=> {
+                socket.emit('join-game',game_id); 
+            }}>Join</button> */}
 
         
     </div>

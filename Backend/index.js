@@ -6,14 +6,15 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server,{ 
   cors: {
-    origin: "http://localhost:5173/",
-    methods: ["GET", "POST"]
+    origin: "http://localhost:5173"
   }
 }
 
 , );
+// const io = socketIO(server);
 
 let gameno = 0;
+let Rooms = [];
 port = 4000;
 const generateUniqueId = require('./genID.js');
 const { log } = require('console');
@@ -35,10 +36,43 @@ app.get('/create-game', (req, res) => {
 
 io.on("connection", (socket)=> {
 
-  socket.on('join-game', (gameid) => {
+  socket.on('create-game', (gameid) => {
+
+    log(`Player joined game ${gameid}`);
 
     socket.join(gameid) ;
-    io.to(gameid).emit('playerJoined');
+    io.to(gameid).emit("roomJoined", `You have joined the room: ${gameid}`);
+
+    
+
+
+  });
+
+  socket.on('join-game', (gameid) => {
+
+    
+    if(io.of("/").adapter.rooms.get(gameid))
+    {
+      const room = io.of("/").adapter.rooms.get(gameid);
+      log(`Player joined game ${gameid}`);
+
+      socket.join(gameid) ;
+      io.to(gameid).emit("roomJoined", `You have joined the room: ${gameid} with ${room.size} members`);
+
+    }
+    else
+    {
+      console.log("room doesnt exist");
+    }
+    
+   
+
+
+    
+
+
+  
+
     
 
   })
@@ -53,11 +87,11 @@ io.on("connection", (socket)=> {
     res.send('Welcome to Shatranj!')
   })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
 
-
+server.listen(4000);
 
 
  //1. Signup 

@@ -1,5 +1,7 @@
-import React, { useState }  from "react";
+import React, { useEffect, useState }  from "react";
 import { BrowserRouter , Routes , Route } from "react-router-dom";
+
+import { socket } from "../socket";
 
 // import './joingame.css'
 
@@ -9,6 +11,16 @@ import { BrowserRouter , Routes , Route } from "react-router-dom";
 
 const create_game = () => {
     const [game_id, setGame_id] = useState("");
+
+    useEffect( ()=>{
+
+       
+        socket.on("roomJoined", (message) => {
+            console.log(message); // Print the message to the console
+          });
+
+
+    }, [])
     return (
         <div>
             <h1>Create Game</h1>
@@ -19,6 +31,8 @@ const create_game = () => {
         console.log("game created");
         console.log(data);
         setGame_id(data.gameId);
+        socket.emit('create-game',data.gameId);
+        
      })
      .catch((err) => {
         console.log(err.message);
