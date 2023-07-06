@@ -64,22 +64,28 @@ io.on("connection", (socket)=> {
     {
       console.log("room doesnt exist");
     }
-    
-   
-
-
-    
-
-
-  
-
-    
-
   })
+    socket.on('return-members', (gameid) => {
 
+    
+      if(io.of("/").adapter.rooms.get(gameid))
+      {
+        const room = io.of("/").adapter.rooms.get(gameid);
+        log(`Player joined game ${gameid}`);
+        io.to(gameid).emit("roomJoined", `You have joined the room: ${gameid} with ${room.size} members`);
+  
+      }
+      else
+      {
+        console.log("room doesnt exist");
+      }
+    })
 
+      socket.on('send-moves', (game_id,image_pos) => {
 
-
+          io.to(game_id).emit("recieve-moves", image_pos);
+    
+        })
 })
 
 

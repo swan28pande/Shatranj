@@ -37,12 +37,7 @@ const create_game = () => {
      .catch((err) => {
         console.log(err.message);
      })
-    }}
-            
-            
-            
-            
-            >create Game</button>
+    }}>create Game</button>
        
     <h1>{game_id}</h1>
     </div>

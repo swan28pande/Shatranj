@@ -47,7 +47,7 @@ import { socket } from '../socket.js';
 
 
 
-const Chessboard = () => {
+const Chessboard_2 = () => {
  
 
   const canvasRef = useRef(null);
@@ -305,26 +305,12 @@ const Chessboard = () => {
     console.log(message); // Print the message to the console
   });
 
-  // socket.on('recieve-moves',(image_pos)=> {
-  //   setImagePositions(image_pos);
-  //   draw_pieces();
-  //   console.log(ImagePositions);
-  // });
+  socket.on('recieve-moves',(image_pos)=> {
+    setImagePositions(image_pos);
+    draw_pieces();
+    console.log(ImagePositions);
+  });
 }, []);
-
-
-useEffect(()=> { 
-  const canvas = canvasRef.current;
-  const ctx = canvas.getContext("2d");
-  // clear canvas
-  ctx.clearRect(0,0,canvas.width,canvas.height) ;
-  draw_squares() ;
-  for(let i = 0 ; i < ImagePositions.length ; i++){
-      ctx.drawImage(codetoimg[ImagePositions[i].piece],ImagePositions[i].x,ImagePositions[i].y,70,70) ; 
-  }
-
-
-})
 
 
   const checkAllImagesLoaded = () => {
@@ -355,17 +341,17 @@ let codetoimg = {'wr_1':whiteRook_1Ref.current,'wn_1':whiteKnight_1Ref.current,'
   }
   
 
-  // function draw_pieces() { 
-  //     const canvas = canvasRef.current;
-  //     const ctx = canvas.getContext("2d");
-  //     // clear canvas
-  //     ctx.clearRect(0,0,canvas.width,canvas.height) ;
-  //     draw_squares() ;
-  //     for(let i = 0 ; i < ImagePositions.length ; i++){
-  //         ctx.drawImage(codetoimg[ImagePositions[i].piece],ImagePositions[i].x,ImagePositions[i].y,70,70) ; 
-  //     }
-  //     // socket.emit('send-moves', (game_id,ImagePositions));
-  //  }
+  function draw_pieces() { 
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      // clear canvas
+      ctx.clearRect(0,0,canvas.width,canvas.height) ;
+      draw_squares() ;
+      for(let i = 0 ; i < ImagePositions.length ; i++){
+          ctx.drawImage(codetoimg[ImagePositions[i].piece],ImagePositions[i].x,ImagePositions[i].y,70,70) ; 
+      }
+      socket.emit('send-moves', (game_id,ImagePositions));
+  }
 
 
   function draw_squares()
@@ -994,7 +980,7 @@ const handleMouseMove = (e) => {
     image_pos.find((x)=> x.piece===selectedPiece).y = offsetY -25;
 
     setImagePositions(image_pos);
-    // draw_pieces();
+    draw_pieces();
   }
 };
 const handleMouseUp = (e) => {
@@ -1028,7 +1014,7 @@ const handleMouseUp = (e) => {
       setImagePositions(image_pos);
     }
 
-    // draw_pieces();
+    draw_pieces();
 
   setSelectedPiece(null);
   setInitialPosition([]);
@@ -1078,4 +1064,4 @@ const checkPieceAtPosition = (x, y) => {
   );
 };
 
-export default Chessboard;
+export default Chessboard_2;
