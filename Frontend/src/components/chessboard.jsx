@@ -95,11 +95,20 @@ const Chessboard = () => {
     const [whitemove,setwhitemove]=useState(true);
 
 
-    const { game_id } = useParams();
+    const { game_id ,member} = useParams();
+    const [boarddisable, setboarddisable] = useState(true);
+   
+
+  
+
+
 
   useEffect(() => {
 
-
+    if(member==='white')
+    {
+      setboarddisable(false);
+    }
     console.log(game_id);
     socket.emit('join-game',game_id);
     // socket.emit('return-members',game_id);
@@ -305,6 +314,14 @@ const Chessboard = () => {
     console.log(message); // Print the message to the console
   });
 
+  const handler = (image_pos,whitemove,boarddisable) => {
+    setImagePositions(image_pos);
+    setwhitemove(whitemove);
+    setboarddisable(boarddisable);
+    console.log(image_pos);
+  };
+  socket.on("recieve-moves", handler);
+
   // socket.on('recieve-moves',(image_pos)=> {
   //   setImagePositions(image_pos);
   //   draw_pieces();
@@ -323,8 +340,8 @@ useEffect(()=> {
       ctx.drawImage(codetoimg[ImagePositions[i].piece],ImagePositions[i].x,ImagePositions[i].y,70,70) ; 
   }
 
-
-})
+  console.log('Hi');
+});
 
 
   const checkAllImagesLoaded = () => {
@@ -1016,10 +1033,12 @@ const handleMouseUp = (e) => {
     FinalPosition.y = Math.floor(offsetY/70)*70;
 
     setFinalPosition({ x: Math.floor(offsetX/70)*70, y: Math.floor(offsetY/70)*70 });
-    if(checklegallity() && !checkinbetween())
+    if(checklegallity() && !checkinbetween() && !boarddisable)
     {
       setImagePositions(image_pos);
       setwhitemove(!whitemove );
+      setboarddisable(!boarddisable);
+      socket.emit('send-moves',game_id,image_pos,!whitemove);
     }
     
     else {
@@ -1028,8 +1047,7 @@ const handleMouseUp = (e) => {
       setImagePositions(image_pos);
     }
 
-    // draw_pieces();
-
+ 
   setSelectedPiece(null);
   setInitialPosition([]);
   setFinalPosition([]);

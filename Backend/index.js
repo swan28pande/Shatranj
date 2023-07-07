@@ -81,9 +81,10 @@ io.on("connection", (socket)=> {
       }
     })
 
-      socket.on('send-moves', (game_id,image_pos) => {
+      socket.on('send-moves', (game_id,image_pos,whitemove,boarddisable) => {
 
-          io.to(game_id).emit("recieve-moves", image_pos);
+          socket.broadcast.to(game_id).emit("recieve-moves", image_pos,whitemove,boarddisable);
+          console.log("move recieved to server");
     
         })
 })

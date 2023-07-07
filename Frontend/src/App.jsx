@@ -18,7 +18,7 @@ function App() {
         <Route path="/create-game" element={<CreateGame/>} />
         <Route path="/join-game" element={<JoinGame/>} />
         {/* <Route path="/" element={<ChessboardInverse />} /> */}
-        <Route path="/room/:game_id" element={<Chessboard />} />
+        <Route path="/room/:game_id/:member" element={<Chessboard />} />
         <Route path="/room2/:game_id" element={<Chessboard_2 />} />
 
         {/* <Route path="/" element={<SideCanvas />} /> */}
