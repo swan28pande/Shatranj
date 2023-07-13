@@ -336,11 +336,20 @@ useEffect(()=> {
   // clear canvas
   ctx.clearRect(0,0,canvas.width,canvas.height) ;
   draw_squares() ;
-  for(let i = 0 ; i < ImagePositions.length ; i++){
+  if(member==='white')
+  {
+    for(let i = 0 ; i < ImagePositions.length ; i++){
       ctx.drawImage(codetoimg[ImagePositions[i].piece],ImagePositions[i].x,ImagePositions[i].y,70,70) ; 
   }
 
-  console.log('Hi');
+  }
+  else
+  {
+    for(let i = 0 ; i < ImagePositions.length ; i++){
+      ctx.drawImage(codetoimg[ImagePositions[i].piece],490-ImagePositions[i].x,490-ImagePositions[i].y,70,70) ; 
+
+  }
+  }
 });
 
 
@@ -980,7 +989,20 @@ setwhitemove(true );
       y=Math.floor(y/70)*70 ;
       const clickedPiece  = checkPieceAtPosition(x,y); 
      setSelectedPiece(clickedPiece); 
-     setInitialPosition({x:x , y:y});
+     console.log("x: ",x,"y: ",y);
+     if(member==='white')
+     {
+      setInitialPosition({x:x , y:y});
+     }
+     else
+     {
+      setInitialPosition({x:490-x , y:490-y});
+     }
+    
+     
+    
+   
+     
 
 } ; 
 
@@ -990,8 +1012,15 @@ const handleMouseMove = (e) => {
   const rect = canvas.getBoundingClientRect();
   const offsetX = e.clientX - rect.left;
   const offsetY = e.clientY - rect.top;
-
-  setMousePosition({ x: offsetX, y: offsetY });
+  if(member==='white')
+  {
+    setMousePosition({ x: offsetX, y: offsetY });
+  }
+  else
+  {
+    setMousePosition({ x: 490-offsetX, y: 490-offsetY });
+  }
+ 
 
   if (selectedPiece) {
   
@@ -1006,9 +1035,20 @@ const handleMouseMove = (e) => {
 
     let image_pos = ImagePositions ;
 
-    image_pos.find((x)=> x.piece===selectedPiece).x = offsetX-25 ;
+    if(member!='white')
+    {
+      image_pos.find((x)=> x.piece===selectedPiece).x = 490-offsetX+25 ;
 
-    image_pos.find((x)=> x.piece===selectedPiece).y = offsetY -25;
+      image_pos.find((x)=> x.piece===selectedPiece).y = 490-offsetY+25;
+    }
+    else
+    {
+      image_pos.find((x)=> x.piece===selectedPiece).x = offsetX-25 ;
+
+      image_pos.find((x)=> x.piece===selectedPiece).y = offsetY-25;
+    }
+
+   
 
     setImagePositions(image_pos);
     // draw_pieces();
@@ -1017,22 +1057,47 @@ const handleMouseMove = (e) => {
 const handleMouseUp = (e) => {
   const canvas = canvasRef.current;
   const rect = canvas.getBoundingClientRect();
-  const offsetX = e.clientX - rect.left;
-  const offsetY = e.clientY - rect.top;
+  var offsetX = e.clientX - rect.left;
+  var offsetY = e.clientY - rect.top;
+  if(member==='white')
+  {
+    setMousePosition({ x: offsetX, y: offsetY });
+  }
+  else
+  {
+    setMousePosition({ x: 490-offsetX, y: 490-offsetY });
+  }
 
-  setMousePosition({ x: offsetX, y: offsetY });
     
   let image_pos = ImagePositions ;
 
 
     // image_pos.find((x)=> x.Image===selectedPiece).x = Math.floor(offsetX/70)*70 ;
-    image_pos.find((x)=> x.piece===selectedPiece).x = Math.floor(offsetX/70)*70;
+    
+    if(member==='white')
+    {
+      image_pos.find((x)=> x.piece===selectedPiece).x = Math.floor(offsetX/70)*70;
 
-    image_pos.find((x)=> x.piece===selectedPiece).y = Math.floor(offsetY/70)*70 ;
-    FinalPosition.x = Math.floor(offsetX/70)*70;
-    FinalPosition.y = Math.floor(offsetY/70)*70;
+      image_pos.find((x)=> x.piece===selectedPiece).y = Math.floor(offsetY/70)*70 ;
+      FinalPosition.x = Math.floor(offsetX/70)*70;
+      FinalPosition.y = Math.floor(offsetY/70)*70;
+      setFinalPosition({ x: Math.floor(offsetX/70)*70, y: Math.floor(offsetY/70)*70 });
+     
+    }
+    else{
+      image_pos.find((x)=> x.piece===selectedPiece).x = 490-Math.floor(offsetX/70)*70;
 
-    setFinalPosition({ x: Math.floor(offsetX/70)*70, y: Math.floor(offsetY/70)*70 });
+      image_pos.find((x)=> x.piece===selectedPiece).y = 490-Math.floor(offsetY/70)*70 ;
+      FinalPosition.x = 490-Math.floor(offsetX/70)*70;
+      FinalPosition.y = 490-Math.floor(offsetY/70)*70;
+      console.log("Final-x: ",FinalPosition.x , "Final-y: ",FinalPosition.y); 
+      setFinalPosition({ x:490- Math.floor(offsetX/70)*70, y:490- Math.floor(offsetY/70)*70 });
+      
+    }
+
+  
+
+
     if(checklegallity() && !checkinbetween() && !boarddisable)
     {
       setImagePositions(image_pos);
@@ -1060,10 +1125,22 @@ const checkPieceAtPosition = (x, y) => {
   // Loop through the image positions array and check for a match
   for (const imagePosition of ImagePositions) {
     const { x: imageX, y: imageY, piece } = imagePosition;
-    const isPixelMatch =
+    var isPixelMatch;
+
+    if(member==='white')
+    {
+       isPixelMatch =
       imageX === x && imageY === y;
+    }
+    else{
+      isPixelMatch =
+      imageX === 490-x && imageY === 490-y;
+  
+    }
+   
     if (isPixelMatch) {
       // Match found, do something with the image
+      // console.log("x: ",x," y: ",y);
       return piece;
     }
   }
