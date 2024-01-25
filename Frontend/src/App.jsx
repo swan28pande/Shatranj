@@ -9,7 +9,7 @@ import CreateGame from './components/creategame.jsx'
 import Join_game from './components/joingame.jsx'
 // import Login from './components/login.jsx'
 import Home from "./components/Home.jsx";
-// import './App.css'
+import './App.css'
 
 function App() {
 
