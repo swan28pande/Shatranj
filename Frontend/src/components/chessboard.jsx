@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import  { useRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import WhitePawn_1 from '../assets/Pieces/wp_1.svg';
 import WhitePawn_2 from '../assets/Pieces/wp_2.svg';
@@ -1098,11 +1098,12 @@ const handleMouseUp = (e) => {
   
 
 
-    if(checklegallity() && !checkinbetween() && !boarddisable)
+    if( !boarddisable &&checklegallity() && !checkinbetween() )
     {
       setImagePositions(image_pos);
       setwhitemove(!whitemove );
       setboarddisable(!boarddisable);
+      console.log(image_pos);
       socket.emit('send-moves',game_id,image_pos,!whitemove);
     }
     
@@ -1151,19 +1152,19 @@ const checkPieceAtPosition = (x, y) => {
   return (
     <div>
      
-      <h1 className="Title">Shatranj</h1>
+      <h1 className="chessboard-Title">Shatranj</h1>
       
-      <div className="match_screen"> 
-      <div className="component1"><Side_canvas/></div>
-      <div className="component2">
+      <div className="chessboard-match_screen"> 
+      <div className="chessboard-component1"><Side_canvas/></div>
+      <div className="chessboard-component2">
       <canvas ref={canvasRef} className="chessboard" width={560} height={560} 
        onMouseDown={handleMouseDown}
        onMouseMove={handleMouseMove}
        onMouseUp={handleMouseUp} ></canvas>
       </div>
       </div>
-      <div className="PlayButton">
-      <button onClick={drawBoard} disabled={!imagesLoaded}>
+      <div className="chessboard-PlayButton">
+      <button className="chessboard-button" onClick={drawBoard} disabled={!imagesLoaded}>
         Play
       </button>
       </div>

@@ -6,7 +6,9 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server,{ 
   cors: {
-    origin: "http://localhost:5173"
+    origin: "http://localhost:5173", // Client URL
+    methods: ["GET", "POST"],
+    credentials: true
   }
 }
 
@@ -82,7 +84,7 @@ io.on("connection", (socket)=> {
     })
 
       socket.on('send-moves', (game_id,image_pos,whitemove,boarddisable) => {
-
+          console.log("move recieved to server");
           socket.broadcast.to(game_id).emit("recieve-moves", image_pos,whitemove,boarddisable);
           console.log("move recieved to server");
     

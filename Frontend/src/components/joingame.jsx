@@ -1,11 +1,11 @@
-import React,{ useState,useEffect }  from "react";
+import { useState,useEffect }  from "react";
 import { socket } from '../socket.js';
 
 
 
 
 
-const join_game = () => {
+const Join_game = () => {
     const [game_id, setGame_id] = useState("");
 
     useEffect(() => {
@@ -26,8 +26,10 @@ const join_game = () => {
             <div>
                 <input onChange = { (e) => {setGame_id(e.target.value)}}/>
                 <button type = "submit" onClick= {()=> {
+                    console.log("joining game");   
                     socket.emit('join-game',game_id);
                 }}>Join</button>
+                
             </div>
             {/* <input onChange = { (e) => {setGame_id(e.target.value)}}/>
             <button type = "submit" onClick= {()=> {
@@ -41,4 +43,4 @@ const join_game = () => {
 
 
 
-export default join_game;
+export default Join_game;

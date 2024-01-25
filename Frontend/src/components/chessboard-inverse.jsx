@@ -38,7 +38,7 @@ import whiteKing from '../assets/Pieces/wk_1.svg';
 import blackKing from '../assets/Pieces/bk_1.svg';
 
 import Side_canvas from "./sidecanvas";
-import './chessboard.css' ; 
+// import './chessboard.css' ; 
 const ChessboardInverse = () => {
   const canvasRef = useRef(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);

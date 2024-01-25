@@ -39,7 +39,7 @@ import WhiteKing from '../assets/Pieces/wk_1.svg';
 import BlackKing from '../assets/Pieces/bk_1.svg';
 
 import Side_canvas from "./sidecanvas";
-import './chessboard.css' ; 
+// import './chessboard.css' ; 
 
 import { codemoves } from "./chess_scripts/decodemoves";
 import { socket } from '../socket.js';

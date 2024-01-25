@@ -1,14 +1,13 @@
 // create a standard react component 
 
 
-import React, { useRef ,useEffect,useState} from 'react';
+import  { useRef ,useEffect} from 'react';
 
 import './sidecanvas.css'  ; 
 
-const side_canvas = () => {
+const Side_canvas = () => {
     const canvasRef = useRef(null);
 
-    const [moves, setMoves] = useState([]);
 
       useEffect(() => {
 
@@ -74,7 +73,7 @@ const side_canvas = () => {
     );
 } ; 
 
-export default side_canvas ; 
+export default Side_canvas ; 
 
 
 
