@@ -7,7 +7,8 @@ import Chessboard_2 from './components/chessboard-2'
 // import SideCanvas from './components/sidecanvas' 
 import CreateGame from './components/creategame.jsx'
 import Join_game from './components/joingame.jsx'
-import Login from './components/login.jsx'
+// import Login from './components/login.jsx'
+import Home from "./components/Home.jsx";
 // import './App.css'
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-        <Route path="/" element={<Login/>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/create-game" element={<CreateGame/>} />
         <Route path="/join-game" element={<Join_game/>} />
         {/* <Route path="/" element={<ChessboardInverse />} /> */}
