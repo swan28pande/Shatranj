@@ -99,7 +99,7 @@ const Create_game = () => {
     { game_id === "" && 
             <>
     <Button variant="outlined" onClick={ () =>{
-       fetch(`http://${process.env.REACT_APP_API_URL}/create-game`)
+       fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/create-game`)
        .then(response => response.json())
        .then((data) => {
         console.log("game created");
@@ -126,7 +126,7 @@ const Create_game = () => {
             fullWidth
             
             label="Game Link"
-            value={`http://${process.env.REACT_APP_FRONTEND_URL}/room/${game_id}/white`}
+            value={`${import.meta.env.VITE_REACT_APP_FRONTEND_URL}/room/${game_id}/white`}
             variant="outlined"
             style={{ outline: 'white' }}
             InputProps={{

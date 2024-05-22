@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server,{ 
   cors: {
-    origin: "http://localhost:5173", // Client URL
+    origin: ["http://localhost:5173", "https://shatranj-app.vercel.app/"],
     methods: ["GET", "POST"],
     credentials: true
   }
