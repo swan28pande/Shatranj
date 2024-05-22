@@ -99,7 +99,7 @@ const Create_game = () => {
     { game_id === "" && 
             <>
     <Button variant="outlined" onClick={ () =>{
-       fetch('http://localhost:4000/create-game')
+       fetch(`http://${process.env.REACT_APP_API_URL}/create-game`)
        .then(response => response.json())
        .then((data) => {
         console.log("game created");
@@ -126,7 +126,7 @@ const Create_game = () => {
             fullWidth
             
             label="Game Link"
-            value={`http://localhost:5174/room/${game_id}/white`}
+            value={`http://${process.env.REACT_APP_FRONTEND_URL}/room/${game_id}/white`}
             variant="outlined"
             style={{ outline: 'white' }}
             InputProps={{
