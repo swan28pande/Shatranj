@@ -1,4 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Quicksand&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+html,body
+{
+    font-family: "Bricolage Grotesque";
+    background-color: #ffffff; /* Set the background color to white */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100%; /* Ensure the body takes full height */
+}
+    
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque";
+}
+
+

@@ -1,5 +1,6 @@
 "use client";
 import { TypewriterEffectSmooth } from "./ui/typewriter-effect.tsx";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/moving-border.tsx";
 import { Route } from "react-router-dom";
  export default function Home() {
@@ -29,14 +30,18 @@ import { Route } from "react-router-dom";
       </p>
       <TypewriterEffectSmooth words={words} />
       <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
-        <button className="w-40 h-10 rounded-xl bg-white border dark:border-white border-black text-black text-sm">
+    
+        <button className="w-40 h-10 rounded-xl bg-white border dark:border-white border-black text-black text-sm" >
           Join now
         </button>
+       
         <button className="p-[3px] relative transform translate-y-[-3px]" >
   <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+  <Link to="/create-game">
   <div className="w-40 h-10 px-10 py-2 bg-black rounded-[11px] relative group transition duration-200 text-white hover:bg-transparent">
     Demo
   </div>
+  </Link>
 </button>
 
       </div>

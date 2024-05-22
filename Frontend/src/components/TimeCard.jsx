@@ -20,7 +20,7 @@ export default function TimeCard({ setTime, time, type,selected }) {
             margin: 2, 
             padding: 2, 
             backgroundColor: selected ? "black" : "white",
-            color: selected ? "white" : "inherit",
+            color: selected ? "white" : "black",
             transition: "transform 0.4s ease-in-out",
             ":hover": {
                 // backgroundColor: "#b148d2",
@@ -30,10 +30,10 @@ export default function TimeCard({ setTime, time, type,selected }) {
         } }>
             <CardActionArea onClick={handleClick}>
                 <CardContent>
-                    <Typography gutterBottom variant="h3" component="div">
+                    <Typography gutterBottom variant="h3"  component="div" fontFamily={"Bricolage Grotesque"} >
                         {time}m+0s
                     </Typography>
-                    <Typography variant="h4" >
+                    <Typography variant="h4" fontFamily={"Bricolage Grotesque"} >
                         {type}
                     </Typography>
                 </CardContent>

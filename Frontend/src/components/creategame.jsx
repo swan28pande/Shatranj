@@ -65,7 +65,7 @@ const Create_game = () => {
          <br/>
          <br/>
          <div style={{display:'flex', justifyContent:"center"}}> 
-           <Typography variant="h5" color="black" >
+           <Typography variant="h5" color="black" fontFamily={"Bricolage Grotesque"} >
             Select Color
               </Typography>
         </div>
@@ -77,7 +77,7 @@ const Create_game = () => {
         <br/>
          <br/>
         <div style={{display:'flex', justifyContent:"center"}}> 
-           <Typography variant="h5" color="black" >
+           <Typography variant="h5" color="black" fontFamily={"Bricolage Grotesque"} >
             Select Time Control
               </Typography>
         </div>
