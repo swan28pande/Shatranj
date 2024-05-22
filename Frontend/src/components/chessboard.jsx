@@ -975,7 +975,7 @@ setwhitemove(true );
 
  
 
-  };
+  }
 
 
   const handleMouseDown = (e) => 

@@ -1,0 +1,32 @@
+name: Deploy Backend Aplication to Digitaloceon
+
+on:
+  push:
+    branches:
+      - main  # or your deployment branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH key
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_KEY }}
+
+    - name: Deploy to DigitalOcean
+      run: |
+        ssh -o StrictHostKeyChecking=no parallelmantis@142.93.211.140 << 'EOF'
+          cd chess-app
+          # Pull latest changes
+          git pull origin main
+          # Navigate to app-server directory
+          cd Backend
+          # Your deployment commands, e.g., Docker commands
+          docker-compose down
+          docker-compose up -d --build
+          # Run migrations, collect static, etc.
+        EOF
