@@ -28,6 +28,5 @@ jobs:
           # Your deployment commands, e.g., Docker commands
           docker-compose down
           docker-compose up -d --build
-          docker run -d -p 4000:4000 chess 
           # Run migrations, collect static, etc.
         EOF
