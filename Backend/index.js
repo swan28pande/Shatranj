@@ -25,11 +25,11 @@ const cors = require('cors');
 app.use(cors());
 
 
-app.get('/', (req, res) => {
+app.get('/chess', (req, res) => {
   res.send('Welcome to Shatranj!')
 })
 
-app.get('/create-game', (req, res) => {
+app.get('/chess/create-game', (req, res) => {
   const gameId = generateUniqueId(gameno); // Implement a function to generate a unique game ID
   gameno+=1;
   log(`Created game with ID ${gameId}`);
@@ -92,7 +92,7 @@ io.on("connection", (socket)=> {
 })
 
 
-  app.get('/', (req, res) => {
+  app.get('/chess', (req, res) => {
     res.send('Welcome to Shatranj!')
   })
 
