@@ -1,25 +1,30 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const cors = require('cors'); // Moved this to the top for clarity
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, { 
   cors: {
-    origin: ["http://localhost:5173", "https://shatranj-app.vercel.app/",  "https://swanandpande.com"],
+    origin: ["http://localhost:5173", "https://shatranj-app.vercel.app", "https://swanandpande.com"],
     methods: ["GET", "POST"],
     credentials: true
   }
 });
+
+// CORS middleware for Express
+app.use(cors({
+  origin: ["http://localhost:5173", "https://shatranj-app.vercel.app", "https://swanandpande.com"],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 let gameno = 0;
 let Rooms = [];
 const port = 4000;
 const generateUniqueId = require('./genID.js');
 const { log } = require('console');
-
-const cors = require('cors');
-app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('Welcome to Shatranj!')
