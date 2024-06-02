@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, { 
   cors: {
-    origin: ["http://localhost:5173", "https://shatranj-app.vercel.app", "https://swanandpande.com"],
+    origin: ["http://localhost:5173", "https://shatranj-app.vercel.app", "https://www.swanandpande.com"],
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -15,7 +15,7 @@ const io = socketIO(server, {
 
 // CORS middleware for Express
 app.use(cors({
-  origin: ["http://localhost:5173", "https://shatranj-app.vercel.app", "https://swanandpande.com"],
+  origin: ["http://localhost:5173", "https://shatranj-app.vercel.app", "https://www.swanandpande.com"],
   methods: ["GET", "POST"],
   credentials: true
 }));
