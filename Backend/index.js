@@ -21,11 +21,11 @@ const { log } = require('console');
 const cors = require('cors');
 app.use(cors());
 
-app.get('/chess', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to Shatranj!')
 });
 
-app.get('/chess/create-game', (req, res) => {
+app.get('/create-game', (req, res) => {
   const gameId = generateUniqueId(gameno); // Implement a function to generate a unique game ID
   gameno += 1;
   log(`Created game with ID ${gameId}`);
