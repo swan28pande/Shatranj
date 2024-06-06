@@ -315,19 +315,20 @@ const Chessboard = () => {
   });
 
   const handler = (image_pos,whitemove,boarddisable) => {
+    console.log("Hiiiiiiii")
     setImagePositions(image_pos);
     setwhitemove(whitemove);
     setboarddisable(boarddisable);
     console.log(image_pos);
   };
-  socket.on("recieve-moves", handler);
+  socket.on("receive-moves", handler);
 
-  // socket.on('recieve-moves',(image_pos)=> {
+  // socket.on('receive-moves',(image_pos)=> {
   //   setImagePositions(image_pos);
   //   draw_pieces();
   //   console.log(ImagePositions);
   // });
-}, []);
+}, [game_id,member]);
 
 
 useEffect(()=> { 

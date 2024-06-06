@@ -40,12 +40,13 @@ const Create_game = () => {
     }
 
     const handleCopyClick = () => {
-        navigator.clipboard.writeText(`http://localhost:5174/room/${game_id}/white`);
+        navigator.clipboard.writeText(`http://localhost:5173/room/${game_id}/white`);
     };
     useEffect( ()=>{
 
        
         socket.on("roomJoined", (message) => {
+            console.log("Hiiiiiiiiii")
             console.log(message); // Print the message to the console
           });
          
