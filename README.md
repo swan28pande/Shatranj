@@ -1,4 +1,4 @@
-# chess-app
+# Shatranj
 
 ## Tasks 
 
