@@ -40,31 +40,6 @@ Shatranj is a realtime, multiplayer chess web application. It pairs a React + Vi
 - `Frontend/` — React + Vite app, Tailwind CSS, UI components, assets (SVG pieces, sounds).
 - `Backend/` — Express server with a Socket.IO server and simple HTTP endpoints.
 
-## Technologies and why they were chosen
-
-- React 18 (Frontend)
-	- Component-driven UI and state management; works well with Vite for fast development.
-
-- Vite (Frontend tooling)
-	- Lightweight dev server and fast HMR for iterative UI development.
-
-- Tailwind CSS + PostCSS + DaisyUI (Styling)
-	- Utility-first CSS for rapid UI layout and theming. DaisyUI supplies accessible components.
-
-- MUI & Framer Motion
-	- MUI for ready-made UI components, Framer Motion for smooth UI animations.
-
-- Socket.IO (Frontend + Backend)
-	- Simplifies realtime, event-driven communication for moves, room events, and presence.
-
-- Node.js + Express (Backend)
-	- Minimal, flexible HTTP server used alongside Socket.IO to manage rooms and lightweight endpoints.
-
-- nodemon (dev dependency)
-	- Auto-restarts the backend during development for faster feedback.
-
-These choices prioritize fast iteration during UI work (Vite + React) and a straightforward realtime API (Socket.IO + Express).
-
 ## Quick start (local development)
 
 Prerequisites: Node.js 16+ and npm (or yarn).
