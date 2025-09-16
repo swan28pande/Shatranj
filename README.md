@@ -125,8 +125,5 @@ If you'd like, I can also:
 
 ## License
 
-Add a LICENSE file to declare open-source terms.
-
+MIT License
 ---
-
-If you want, tell me which extra item above to add next and I'll implement it (dev script, env example, or checklist).
