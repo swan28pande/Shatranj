@@ -1,31 +1,5 @@
 # Shatranj
 
-Shatranj is a realtime, multiplayer chess web app built with a React + Vite frontend and an Express + Socket.IO backend. It provides a playable chessboard, move rules enforcement, and real-time synchronization between players using WebSockets.
-
-## Goals & Features
-
-- Play chess in realtime against another player over the network.
-- Interactive board with drag / click-to-move controls.
-- Move validation (legal moves, captures, alternate turns).
-- Game room creation and joining via unique game IDs.
-- Realtime move broadcasting using Socket.IO.
-- (Planned) User authentication, timers, move history, en passant, check/stalemate detection.
-
-## Repository layout
-
-- `Frontend/` — React + Vite app for the client UI. Contains components, assets (piece SVGs, sounds), and Tailwind setup.
-- `Backend/` — Node.js + Express server that exposes minimal HTTP endpoints and a Socket.IO server for realtime communication.
-
-## Quick start
-
-Prerequisites: Node.js (16+), npm or yarn.
-
-1) Install dependencies
-
-Frontend:
-
-# Shatranj
-
 Shatranj is a realtime, multiplayer chess web application. It pairs a React + Vite frontend with an Express + Socket.IO backend to provide an interactive chessboard, realtime gameplay, and room-based matches.
 
 ## Key features
